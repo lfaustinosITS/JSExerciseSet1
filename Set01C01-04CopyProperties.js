@@ -1,18 +1,15 @@
-function copyProp(objA, objB, propsToCopy) {
-  if (propsToCopy && Array.isArray(propsToCopy)) {
+function copyProp(objA, objB, propsToCopy=Object.keys(objB)) {
+  if (Array.isArray(propsToCopy)) {
     propsToCopy.forEach(prop => {
       if (objB.hasOwnProperty(prop)) {
         objA[prop] = objB[prop];
       }
     });
   } else {
-    for (var prop in objB) {
-      if (objB.hasOwnProperty(prop)) {
-        objA[prop] = objB[prop];
-      }
+    throw new Error("The properties to copy are not in an aray")
     }
-  }
 }
+
 
 let objA = {
   p1: 'value1',
