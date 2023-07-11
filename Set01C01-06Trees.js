@@ -1,7 +1,7 @@
 class TreeNode {
-  constructor(value) {
+  constructor(value,children=[]) {
     this.value = value;
-    this.children = [];
+    this.children = children;
   }
   
   addChild(childNode) {
@@ -11,12 +11,12 @@ class TreeNode {
   
 function displayTree(node, indent = '', isLastChild = true, isFirstLevel = true) {
   if (!isFirstLevel) {
-    const branch = isLastChild ? '|_ ' : '|- ';
+    const branch = isLastChild ? ' └── ' : ' ├── ';
     console.log(indent + branch + node.value);
   } else {
-    console.log(node.value);
+    console.log('    '+node.value);
   }
-  const childIndent = indent + (isLastChild ? '   ' : '│  ');
+  const childIndent = indent + (isLastChild ? '   ' : ' │  ');
   for (let i = 0; i < node.children.length; i++) {
     const child = node.children[i];
     const isLastChild = i === node.children.length - 1;
@@ -24,28 +24,20 @@ function displayTree(node, indent = '', isLastChild = true, isFirstLevel = true)
   }
 }
   
-const root = new TreeNode('A');
-const nodeA = new TreeNode('a');
-const nodeB = new TreeNode('b');
-const nodeC = new TreeNode('c');
-const nodeAA = new TreeNode('aa');
-const nodeBA = new TreeNode('ba');
-const nodeBB = new TreeNode('bb');
-const nodeCA = new TreeNode('ca');
-const nodeCB = new TreeNode('cb');
+
+
+
 const nodeCBA = new TreeNode('cba');
 const nodeCAA = new TreeNode('caa');
-  
-root.addChild(nodeA);
-root.addChild(nodeB);
-root.addChild(nodeC);
-nodeA.addChild(nodeAA);
-nodeB.addChild(nodeBA);
-nodeB.addChild(nodeBB);
-nodeC.addChild(nodeCA);
-nodeC.addChild(nodeCB);
-nodeCB.addChild(nodeCBA);
-nodeCA.addChild(nodeCAA);
+const nodeAA = new TreeNode('aa',);
+const nodeBA = new TreeNode('ba');
+const nodeBB = new TreeNode('bb');
+const nodeCA = new TreeNode('ca',[nodeCAA]);
+const nodeCB = new TreeNode('cb',[nodeCBA]);
+const nodeA = new TreeNode('a',[nodeAA]);
+const nodeB = new TreeNode('b',[nodeBA,nodeBB]);
+const nodeC = new TreeNode('c',[nodeCA,nodeCB]);
+const root = new TreeNode('A',[nodeA,nodeB,nodeC]);
   
 displayTree(root);
   
