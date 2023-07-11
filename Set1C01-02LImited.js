@@ -5,7 +5,7 @@ function limitFunc(fn, num) {
       count++;
       return fn.apply(this, arguments);
     } else {
-        console.log('Function execution limit reached');
+        throw new Error('Function execution limit reached');
       }
   };
 }
