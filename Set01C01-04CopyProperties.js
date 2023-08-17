@@ -6,7 +6,7 @@ function copyProp(objA, objB, propsToCopy=Object.keys(objB)) {
       }
     });
   } else {
-    throw new Error("The properties to copy are not in an aray")
+    throw new Error("The properties to copy are not in an array")
     }
 }
 
