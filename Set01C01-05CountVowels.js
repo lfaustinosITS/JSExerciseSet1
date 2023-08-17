@@ -1,20 +1,19 @@
-function countVowelsAndDigits(input,type = 'v') {
-  let str= input.toString()
-  if (type == 'v'){
-    const vowelCount = (str.match(/[aeiou]/gi) || []).length;
-    return vowelCount;
-  }
-  else if (type == 'n') {
-    const digitCount = (str.match(/\d/g) || []).length;
-    return digitCount;
-  }
-  else{
-    throw new Error("The character type to count is invalid. Use 'n' for number or 'v' for vowel")
-  }
+function countVowelsOrDigits(input) {
+    let str = input.toString()
+    if (typeof input === "number") {
+        const digitCount = (str.match(/\d/g) || []).length;
+        return digitCount;
+    }
+    else if (typeof input === "string") {
+        const vowelCount = (str.match(/[aeiou]/gi) || []).length;
+        return vowelCount;
+    }
+    else {
+        throw new Error("The input type is invalid")
+    }
 }
-console.log(countVowelsAndDigits(1234));
-console.log(countVowelsAndDigits(1234,'n'));
-console.log(countVowelsAndDigits("Hello World"));
-console.log(countVowelsAndDigits("OpenAI1234",'n'));
-console.log(countVowelsAndDigits("Lorem ipsum dolor sit amet",'v'));
-  
+console.log(countVowelsOrDigits(1234));
+console.log(countVowelsOrDigits(374839));
+console.log(countVowelsOrDigits("Hello World"));
+console.log(countVowelsOrDigits("OpenAI1234"));
+console.log(countVowelsOrDigits("Lorem ipsum dolor sit amet"));
