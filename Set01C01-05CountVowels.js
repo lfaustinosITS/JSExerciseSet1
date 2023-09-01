@@ -1,8 +1,8 @@
 function countVowelsOrDigits(input) {
     let str = input.toString()
     if (typeof input === "number") {
-        const digitCount = (str.match(/\d/g) || []).length;
-        return digitCount;
+        return Math.floor(Math.log10(input)) + 1
+
     }
     else if (typeof input === "string") {
         const vowelCount = (str.match(/[aeiou]/gi) || []).length;
